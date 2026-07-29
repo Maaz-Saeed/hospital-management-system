@@ -1,5 +1,11 @@
 # 🏥 Advanced Hospital Management System
 
+[![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.x-000000.svg?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Open Issues](https://img.shields.io/github/issues/Maaz-Saeed/hospital-management-system)](https://github.com/Maaz-Saeed/hospital-management-system/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/Maaz-Saeed/hospital-management-system)](https://github.com/Maaz-Saeed/hospital-management-system/commits/main)
+
 A production-ready web application built with **Python Flask** and **SQLite** for managing a hospital's digital presence, patient communications, and internal operations.
 
 ---
@@ -186,7 +192,7 @@ The chatbot handles the following queries:
 
 ## 📄 License
 
-This project was developed as part of a university assignment. All rights reserved.
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
