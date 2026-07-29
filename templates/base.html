@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}City General Hospital{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('main.index') }}" class="nav-brand">
+                <span class="brand-icon">🏥</span>
+                <span class="brand-text">City General <strong>Hospital</strong></span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{{ url_for('main.index') }}" class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">Home</a></li>
+                <li><a href="{{ url_for('main.about') }}" class="nav-link {% if request.endpoint == 'main.about' %}active{% endif %}">About</a></li>
+                <li><a href="{{ url_for('main.services') }}" class="nav-link {% if request.endpoint == 'main.services' %}active{% endif %}">Services</a></li>
+                <li><a href="{{ url_for('chatbot.chatbot_page') }}" class="nav-link {% if request.endpoint == 'chatbot.chatbot_page' %}active{% endif %}">Chatbot</a></li>
+                <li><a href="{{ url_for('main.contact') }}" class="nav-link {% if request.endpoint == 'main.contact' %}active{% endif %}">Contact</a></li>
+                <li><a href="{{ url_for('main.portfolio') }}" class="nav-link {% if request.endpoint == 'main.portfolio' %}active{% endif %}">Portfolio</a></li>
+                {% if session.get('user_id') %}
+                    <li><a href="{{ url_for('auth.dashboard') }}" class="nav-link nav-btn">Dashboard</a></li>
+                    {% if session.get('user_role') == 'admin' %}
+                    <li><a href="{{ url_for('admin.admin_dashboard') }}" class="nav-link nav-btn nav-btn-admin">Admin</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('auth.logout') }}" class="nav-link nav-btn nav-btn-outline">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.login') }}" class="nav-link nav-btn">Login</a></li>
+                    <li><a href="{{ url_for('auth.register') }}" class="nav-link nav-btn nav-btn-primary">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">
+                <span>{{ message }}</span>
+                <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>🏥 City General Hospital</h3>
+                    <p>Providing compassionate and quality healthcare to our community since 1990.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                        <li><a href="{{ url_for('main.about') }}">About Us</a></li>
+                        <li><a href="{{ url_for('main.services') }}">Services</a></li>
+                        <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Departments</h4>
+                    <ul>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Neurology</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>📍 123 Medical Drive, Karachi</li>
+                        <li>📞 +92-21-9876543</li>
+                        <li>🚨 Emergency: 1122</li>
+                        <li>✉️ info@cityhospital.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 City General Hospital. All rights reserved. | Developed by <a href="{{ url_for('main.portfolio') }}">Maooz Khan</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

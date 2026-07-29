@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Services & Departments – City General Hospital{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Our <span class="text-accent">Services & Departments</span></h1>
+        <p>World-class medical care across all major specialties.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="services-grid">
+            {% set services = [
+                ('❤️', 'Cardiology', 'Heart disease, arrhythmia, coronary care, echocardiography, angioplasty, and cardiac rehabilitation.'),
+                ('🧠', 'Neurology', 'Stroke, epilepsy, migraines, Parkinson\'s disease, multiple sclerosis, and nerve disorders.'),
+                ('🦴', 'Orthopedics', 'Joint replacement, spine surgery, sports injuries, fracture care, and physiotherapy.'),
+                ('👶', 'Pediatrics', 'Newborn care, vaccinations, childhood diseases, pediatric surgery, and developmental health.'),
+                ('🔬', 'Oncology', 'Cancer diagnosis, chemotherapy, radiation therapy, immunotherapy, and palliative care.'),
+                ('🚨', 'Emergency & Trauma', '24/7 emergency services, trauma surgery, intensive care, and disaster response.'),
+                ('🩸', 'Pathology & Lab', 'Blood tests, biopsies, microbiology, hematology, and rapid diagnostic testing.'),
+                ('📷', 'Radiology', 'X-rays, CT scans, MRI, ultrasound, mammography, and interventional radiology.'),
+                ('🤰', 'Obstetrics & Gynecology', 'Prenatal care, safe deliveries, gynecological surgery, fertility treatment, and women\'s health.'),
+                ('💉', 'General Surgery', 'Appendectomy, laparoscopy, hernia repair, gallbladder removal, and abdominal surgery.'),
+                ('😷', 'Pulmonology', 'Asthma, COPD, pneumonia, sleep disorders, lung cancer, and respiratory ICU.'),
+                ('🦷', 'Dental & Oral Surgery', 'Tooth extractions, orthodontics, implants, root canals, and oral cancer screening.')
+            ] %}
+            {% for icon, name, desc in services %}
+            <div class="service-card">
+                <div class="service-icon">{{ icon }}</div>
+                <h3>{{ name }}</h3>
+                <p>{{ desc }}</p>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-sm btn-primary mt-10">Book Consultation</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Facilities -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Hospital <span class="text-accent">Facilities</span></h2>
+        </div>
+        <div class="facilities-grid">
+            {% set facilities = [
+                ('🏨', 'Private & Semi-Private Rooms', '200+ bed capacity with modern amenities'),
+                ('🏃', 'Physiotherapy Center', 'Full rehabilitation and recovery programs'),
+                ('💊', '24/7 Pharmacy', 'All medications available round the clock'),
+                ('🍽️', 'Cafeteria & Canteen', 'Healthy meals for patients and visitors'),
+                ('🚗', 'Ambulance Services', 'GPS-equipped ambulances citywide'),
+                ('🅿️', 'Parking', 'Free parking for patients and visitors')
+            ] %}
+            {% for icon, name, desc in facilities %}
+            <div class="facility-item">
+                <span class="facility-icon">{{ icon }}</span>
+                <div>
+                    <strong>{{ name }}</strong>
+                    <p>{{ desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}City General Hospital – Compassionate Care{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">🏥 Trusted Since 1990</span>
+        <h1>Your Health, <br><span class="text-accent">Our Priority</span></h1>
+        <p>City General Hospital provides world-class medical care with compassion and cutting-edge technology. Your well-being is at the heart of everything we do.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('main.contact') }}" class="btn btn-primary btn-lg">Book Appointment</a>
+            <a href="{{ url_for('main.services') }}" class="btn btn-outline btn-lg">Our Services</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><strong>50+</strong><span>Specialists</span></div>
+            <div class="stat"><strong>10K+</strong><span>Patients Served</span></div>
+            <div class="stat"><strong>24/7</strong><span>Emergency Care</span></div>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="hero-card">
+            <div class="hero-icon">🩺</div>
+            <h3>Expert Care</h3>
+            <p>Board-certified specialists</p>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section features-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose <span class="text-accent">City General?</span></h2>
+            <p>We combine technology, expertise, and compassion to deliver exceptional healthcare.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Award-Winning Care</h3>
+                <p>Recognized nationally for excellence in patient care and clinical outcomes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔬</div>
+                <h3>Advanced Technology</h3>
+                <p>State-of-the-art diagnostic and treatment equipment for accurate results.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💊</div>
+                <h3>Comprehensive Services</h3>
+                <p>From preventive care to complex surgeries, we cover all your health needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🕐</div>
+                <h3>24/7 Emergency</h3>
+                <p>Round-the-clock emergency services with rapid response teams always on standby.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Expert Team</h3>
+                <p>50+ specialized physicians, surgeons, and healthcare professionals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Chatbot Support</h3>
+                <p>Get instant answers to your hospital queries through our virtual assistant.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Departments Preview -->
+<section class="section departments-section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our <span class="text-accent">Departments</span></h2>
+            <p>Specialized care across all major medical disciplines.</p>
+        </div>
+        <div class="dept-grid">
+            {% set depts = [
+                ('❤️', 'Cardiology', 'Heart disease diagnosis & treatment'),
+                ('🧠', 'Neurology', 'Brain & nervous system disorders'),
+                ('🦴', 'Orthopedics', 'Bone, joint & muscle care'),
+                ('👶', 'Pediatrics', 'Healthcare for children & infants'),
+                ('🔬', 'Oncology', 'Comprehensive cancer treatment'),
+                ('🚨', 'Emergency', '24/7 trauma & critical care')
+            ] %}
+            {% for icon, name, desc in depts %}
+            <div class="dept-card">
+                <div class="dept-icon">{{ icon }}</div>
+                <h3>{{ name }}</h3>
+                <p>{{ desc }}</p>
+                <a href="{{ url_for('main.services') }}" class="dept-link">Learn More →</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-40">
+            <a href="{{ url_for('main.services') }}" class="btn btn-primary">View All Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-card">
+            <h2>Ready to Schedule Your Visit?</h2>
+            <p>Our team of experts is ready to provide the care you deserve. Book an appointment today or chat with our virtual assistant for instant help.</p>
+            <div class="cta-actions">
+                <a href="{{ url_for('main.contact') }}" class="btn btn-white btn-lg">Book Appointment</a>
+                <a href="{{ url_for('chatbot.chatbot_page') }}" class="btn btn-outline-white btn-lg">💬 Chat with Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

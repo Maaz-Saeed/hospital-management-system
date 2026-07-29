@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Portfolio – Maooz Khan{% endblock %}
+
+{% block content %}
+<section class="portfolio-hero">
+    <div class="container">
+        <div class="portfolio-header">
+            <div class="portfolio-avatar">MK</div>
+            <div>
+                <h1>Maooz <span class="text-accent">Khan</span></h1>
+                <p class="portfolio-tagline">Full Stack Web Developer | Python Flask Enthusiast</p>
+                <div class="portfolio-meta">
+                    <span>🎓 5th Semester</span>
+                    <span>🆔 SU-23-01-002-033</span>
+                    <span>🏛️ Department of Computer Science</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="portfolio-layout">
+            <!-- Left Column -->
+            <div class="portfolio-sidebar">
+                <!-- Info Card -->
+                <div class="port-card">
+                    <h3>📋 Student Info</h3>
+                    <ul class="port-info-list">
+                        <li><span>Name</span><strong>Maooz Khan</strong></li>
+                        <li><span>Reg. No.</span><strong>SU-23-01-002-033</strong></li>
+                        <li><span>Semester</span><strong>5th</strong></li>
+                        <li><span>Department</span><strong>Computer Science</strong></li>
+                        <li><span>University</span><strong>Szabist University</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Card -->
+                <div class="port-card">
+                    <h3>📬 Contact</h3>
+                    <ul class="port-info-list">
+                        <li><span>📧</span><strong>maooz@email.com</strong></li>
+                        <li><span>📱</span><strong>+92-300-0000000</strong></li>
+                        <li><span>🐙</span><strong>github.com/maooz-khan</strong></li>
+                        <li><span>💼</span><strong>linkedin.com/in/maooz-khan</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="portfolio-main">
+                <!-- About -->
+                <div class="port-card">
+                    <h3>👋 About Me</h3>
+                    <p>I'm a passionate computer science student with a strong interest in full-stack web development. I enjoy building practical applications that solve real-world problems using Python, Flask, and modern frontend technologies.</p>
+                    <p>Currently in my 5th semester at Szabist University, I've been developing my skills in both backend and frontend development, with a focus on clean, maintainable code.</p>
+                </div>
+
+                <!-- Skills -->
+                <div class="port-card">
+                    <h3>🛠️ Skills</h3>
+                    <div class="skills-grid">
+                        {% set skills = [
+                            ('Python', 90, '#3776ab'),
+                            ('Flask', 85, '#000000'),
+                            ('HTML5', 95, '#e34c26'),
+                            ('CSS3', 88, '#264de4'),
+                            ('JavaScript', 80, '#f7df1e'),
+                            ('SQLite', 82, '#003b57'),
+                            ('SQLAlchemy', 78, '#d71f00'),
+                            ('Git & GitHub', 75, '#f05032')
+                        ] %}
+                        {% for skill, level, color in skills %}
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span>{{ skill }}</span>
+                                <span>{{ level }}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: {{ level }}%; background: {{ color }}"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="port-card">
+                    <h3>💼 Projects</h3>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h4>🏥 Hospital Management System</h4>
+                            <span class="project-badge">Flask + SQLite</span>
+                        </div>
+                        <p>A production-ready web application for hospital management featuring a public website, user authentication, AI-powered chatbot, admin dashboard, and secure database operations.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Flask</span>
+                            <span>SQLAlchemy</span>
+                            <span>SQLite</span>
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-sm btn-primary">View Project</a>
+                            <a href="#" class="btn btn-sm btn-outline">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="port-card">
+                    <h3>🎓 Education</h3>
+                    <div class="edu-item">
+                        <div class="edu-dot"></div>
+                        <div>
+                            <strong>Bachelor of Computer Science</strong>
+                            <span class="edu-school">Szabist University</span>
+                            <span class="edu-year">2023 – Present (5th Semester)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

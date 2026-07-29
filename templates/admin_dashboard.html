@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}Admin Panel – City General Hospital{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>⚙️ Admin <span class="text-accent">Dashboard</span></h1>
+        <p>Manage messages, chatbot logs, and users.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <!-- Stats Row -->
+        <div class="admin-stats">
+            <div class="admin-stat-card">
+                <strong>{{ messages|length }}</strong>
+                <span>Contact Messages</span>
+            </div>
+            <div class="admin-stat-card">
+                <strong>{{ logs|length }}</strong>
+                <span>Chatbot Queries</span>
+            </div>
+            <div class="admin-stat-card">
+                <strong>{{ users|length }}</strong>
+                <span>Registered Users</span>
+            </div>
+        </div>
+
+        <!-- Contact Messages -->
+        <div class="admin-section">
+            <h2>📩 Contact Messages</h2>
+            {% if messages %}
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Date</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for msg in messages %}
+                        <tr>
+                            <td>{{ msg.id }}</td>
+                            <td>{{ msg.name }}</td>
+                            <td>{{ msg.email }}</td>
+                            <td>{{ msg.subject or '-' }}</td>
+                            <td class="msg-cell">{{ msg.message[:80] }}{% if msg.message|length > 80 %}...{% endif %}</td>
+                            <td>{{ msg.timestamp.strftime('%d %b %Y %H:%M') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-state">No messages yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Chatbot Logs -->
+        <div class="admin-section">
+            <h2>🤖 Chatbot Logs <small>(Last 50)</small></h2>
+            {% if logs %}
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>#</th><th>User Query</th><th>Bot Response</th><th>Time</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+                        <tr>
+                            <td>{{ log.id }}</td>
+                            <td>{{ log.user_query }}</td>
+                            <td class="msg-cell">{{ log.bot_response[:100] }}...</td>
+                            <td>{{ log.timestamp.strftime('%d %b %Y %H:%M') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-state">No chatbot logs yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Users -->
+        <div class="admin-section">
+            <h2>👥 Registered Users</h2>
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for u in users %}
+                        <tr>
+                            <td>{{ u.id }}</td>
+                            <td>{{ u.name }}</td>
+                            <td>{{ u.email }}</td>
+                            <td><span class="badge badge-{{ u.role }}">{{ u.role.title() }}</span></td>
+                            <td>{{ u.created_at.strftime('%d %b %Y') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

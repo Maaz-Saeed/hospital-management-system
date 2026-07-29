@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}Virtual Assistant – City General Hospital{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>🤖 Virtual <span class="text-accent">Assistant</span></h1>
+        <p>Get instant answers to your hospital questions, 24/7.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="chatbot-layout">
+            <!-- Suggestions -->
+            <div class="chat-sidebar">
+                <h3>💡 Quick Questions</h3>
+                <div class="suggestions">
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">What departments are available?</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">What are hospital timings?</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">Emergency contact?</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">Doctor availability?</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">Location?</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">What are the fees?</button>
+                    <button class="suggestion-btn" onclick="sendSuggestion(this)">Insurance information?</button>
+                </div>
+                <div class="chat-info">
+                    <p>🏥 Our chatbot can answer common questions about the hospital. For medical advice, please consult a doctor.</p>
+                </div>
+            </div>
+
+            <!-- Chat Window -->
+            <div class="chat-window">
+                <div class="chat-header">
+                    <div class="bot-avatar">🤖</div>
+                    <div>
+                        <strong>Hospital Assistant</strong>
+                        <span class="bot-status">● Online</span>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-content">
+                            👋 Hello! I'm the City General Hospital virtual assistant.<br><br>
+                            I can help you with departments, timings, emergency contacts, doctor availability, location, and more.<br><br>
+                            How can I help you today?
+                        </div>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off">
+                    <button id="sendBtn" onclick="sendMessage()">Send ➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function sendMessage() {
+    const input = document.getElementById('userInput');
+    const message = input.value.trim();
+    if (!message) return;
+
+    addMessage(message, 'user');
+    input.value = '';
+    showTyping();
+
+    fetch('/chatbot/message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+    })
+    .then(r => r.json())
+    .then(data => {
+        removeTyping();
+        if (data.response) {
+            addMessage(data.response, 'bot', data.timestamp);
+        }
+    })
+    .catch(() => {
+        removeTyping();
+        addMessage('Sorry, something went wrong. Please try again.', 'bot');
+    });
+}
+
+function addMessage(text, sender, time) {
+    const messages = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = `message ${sender}-message`;
+    const timeStr = time || new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    div.innerHTML = `<div class="message-content">${text.replace(/\n/g, '<br>')}</div><span class="message-time">${timeStr}</span>`;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function showTyping() {
+    const messages = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'message bot-message typing-indicator';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<div class="message-content"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>';
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function removeTyping() {
+    const el = document.getElementById('typingIndicator');
+    if (el) el.remove();
+}
+
+function sendSuggestion(btn) {
+    document.getElementById('userInput').value = btn.textContent;
+    sendMessage();
+}
+
+document.getElementById('userInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sendMessage();
+});
+</script>
+{% endblock %}

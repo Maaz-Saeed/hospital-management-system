@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us – City General Hospital{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Get In <span class="text-accent">Touch</span></h1>
+        <p>We're here to help. Reach out to us for appointments, inquiries, or emergencies.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="contact-layout">
+            <!-- Contact Form -->
+            <div class="contact-form-wrap">
+                <h2>Send Us a <span class="text-accent">Message</span></h2>
+                <form method="POST" action="{{ url_for('main.contact') }}" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What is this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message 📨</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info-wrap">
+                <h2>Contact <span class="text-accent">Information</span></h2>
+                <div class="contact-info-list">
+                    <div class="contact-info-item">
+                        <div class="ci-icon">📍</div>
+                        <div>
+                            <strong>Address</strong>
+                            <p>123 Medical Center Drive<br>Karachi, Pakistan</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">📞</div>
+                        <div>
+                            <strong>Phone</strong>
+                            <p>+92-21-9876543<br>+92-21-9876544</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">🚨</div>
+                        <div>
+                            <strong>Emergency</strong>
+                            <p>1122 (Ambulance)<br>24/7 Available</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">✉️</div>
+                        <div>
+                            <strong>Email</strong>
+                            <p>info@cityhospital.com<br>appointments@cityhospital.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="ci-icon">⏰</div>
+                        <div>
+                            <strong>Working Hours</strong>
+                            <p>Mon – Sat: 8 AM – 8 PM<br>Emergency: 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

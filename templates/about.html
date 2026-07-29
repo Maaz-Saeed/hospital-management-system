@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}About Us – City General Hospital{% endblock %}
+
+{% block content %}
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="container">
+        <h1>About <span class="text-accent">City General Hospital</span></h1>
+        <p>Serving the community with compassionate, high-quality healthcare for over 30 years.</p>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section">
+    <div class="container">
+        <div class="two-col">
+            <div>
+                <h2>Our <span class="text-accent">Story</span></h2>
+                <p>Founded in 1990, City General Hospital began as a small community clinic with a single mission: to provide accessible, compassionate healthcare to every person, regardless of their background or financial situation.</p>
+                <p>Over three decades, we have grown into a full-service hospital with over 50 specialists, state-of-the-art surgical suites, and a 24/7 emergency department — but our core values remain unchanged.</p>
+                <p>Today, we serve over 10,000 patients annually and continue to expand our services to meet the evolving health needs of our community.</p>
+            </div>
+            <div class="about-visual">
+                <div class="about-badge-grid">
+                    <div class="about-badge"><strong>30+</strong><span>Years of Service</span></div>
+                    <div class="about-badge"><strong>50+</strong><span>Specialists</span></div>
+                    <div class="about-badge"><strong>10K+</strong><span>Patients/Year</span></div>
+                    <div class="about-badge"><strong>24/7</strong><span>Emergency Care</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Core <span class="text-accent">Values</span></h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">💙</div>
+                <h3>Compassion</h3>
+                <p>We treat every patient with kindness, empathy, and respect — as if they were family.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⭐</div>
+                <h3>Excellence</h3>
+                <p>We strive for the highest standards in clinical outcomes, safety, and patient experience.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Integrity</h3>
+                <p>We are transparent, honest, and ethical in all aspects of our care and operations.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔄</div>
+                <h3>Innovation</h3>
+                <p>We continuously adopt new technologies and practices to improve healthcare delivery.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Leadership <span class="text-accent">Team</span></h2>
+        </div>
+        <div class="team-grid">
+            {% set team = [
+                ('Dr. Ahmed Hassan', 'Chief Medical Officer', '20+ years in Internal Medicine'),
+                ('Dr. Sara Malik', 'Head of Surgery', 'Specializes in minimally invasive techniques'),
+                ('Dr. Bilal Khan', 'Head of Cardiology', 'Expert in interventional cardiology'),
+                ('Dr. Ayesha Raza', 'Head of Pediatrics', 'Dedicated to children\'s health')
+            ] %}
+            {% for name, title, desc in team %}
+            <div class="team-card">
+                <div class="team-avatar">{{ name[0] }}</div>
+                <h3>{{ name }}</h3>
+                <span class="team-title">{{ title }}</span>
+                <p>{{ desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard – City General Hospital{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Welcome, <span class="text-accent">{{ user.name }}</span>!</h1>
+        <p>Your personal hospital portal dashboard.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="dc-icon">👤</div>
+                <h3>Account Details</h3>
+                <table class="info-table">
+                    <tr><td>Name</td><td>{{ user.name }}</td></tr>
+                    <tr><td>Email</td><td>{{ user.email }}</td></tr>
+                    <tr><td>Role</td><td><span class="badge badge-{{ user.role }}">{{ user.role.title() }}</span></td></tr>
+                    <tr><td>Joined</td><td>{{ user.created_at.strftime('%d %b %Y') }}</td></tr>
+                </table>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="dc-icon">🔗</div>
+                <h3>Quick Access</h3>
+                <div class="quick-links">
+                    <a href="{{ url_for('main.services') }}" class="ql-btn">🏥 Our Services</a>
+                    <a href="{{ url_for('chatbot.chatbot_page') }}" class="ql-btn">🤖 AI Chatbot</a>
+                    <a href="{{ url_for('main.contact') }}" class="ql-btn">📅 Book Appointment</a>
+                    <a href="{{ url_for('main.about') }}" class="ql-btn">ℹ️ About Hospital</a>
+                    {% if user.role == 'admin' %}
+                    <a href="{{ url_for('admin.admin_dashboard') }}" class="ql-btn ql-btn-admin">⚙️ Admin Panel</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
