@@ -14,7 +14,7 @@ A production-ready web application built with **Python Flask** and **SQLite** fo
 
 | Field | Details |
 |-------|---------|
-| Developer | Maooz Khan |
+| Developer | Maaz Saeed |
 | Registration No. | SU-23-01-002-033 |
 | Semester | 5th |
 | Department | Computer Science |
@@ -196,4 +196,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-*Built with ❤️ by Maooz Khan | SU-23-01-002-033*
+*Built with ❤️ by Maaz Saeed | SU-23-01-002-033*
